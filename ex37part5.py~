@@ -1,0 +1,17 @@
+#Now are going to learn how to send values too a generator
+
+def print_successive_primes(iterations, base=10):
+    #like normal functions, a generator function
+    #can be assigned to a variable
+
+    primte_generator = get_primes(base)
+    #missing code
+    for power in range(iterations):
+        #missing code
+
+def get_primes(number):
+    while True:
+        if is_prime(number):
+           number =  yield number
+        number += 1
+

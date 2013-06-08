@@ -1,0 +1,40 @@
+In this file I will prototype a game.  The game will have the following specification:
+
+1)
+the number of rooms
+
+2)
+the number of events
+
+3)
+the number of number of battles
+
+4)
+the number of players
+
+5)
+the length of playing the game
+
+6)
+Multiple files must be used.
+
+Each room will have its own class.  Classes may interoperate.  
+
+Game description:
+
+This will be a Zelda game.  Link finds himself in a dungeon.  He knows he has to get out of the dungeon.  Also he cannot remember how he got there in the first place.  As Link moves through each room, he realizes how he got there.  It turns out, Link is actually unconscious and in a battle.  Zelda was take by a killer.  You tracked the killer to the dungeon.  The final scene is you waking up, and fighting the killer.  
+
+Further specification:
+
+A file will be used to save the state of the game as well as the player statistics.
+
+There will also be different files for different parts of the game.
+There will be a main file that has all other modules imported.
+
+the game will have 4 rooms.  
+
+there will be one player
+
+There will be one event per room, initially.
+
+There will be 2 battles and two puzzles.
