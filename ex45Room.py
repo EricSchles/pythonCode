@@ -1,7 +1,7 @@
 import os #for linesep
 import sys
 from subprocess import * #for linux commandline utility
-from math import * #randint funciton
+from random import * #randint funciton
 
 class Introduction():
 
@@ -98,7 +98,7 @@ class PuzzleOne(Room):
     def __init__(self):
         stats = open("stats.txt","r")
         self.player_HP = int(stats.readline().strip("\n"))
-        self.backpack = stats.readline().strip("\n")
+        self.backpack = list(stats.readline().strip("\n"))
         self.equipped = stats.readline().strip("\n")
         stats.close()
 
@@ -214,7 +214,8 @@ class FightOne(Room):
                     shadow_HP -= randint(8,50)
                 else:
                     shadow_HP -= randint(3,4)
-            
+                    
+                self.player_HP -= randint(1,2)
             if prompt == 2:
                 if self.equipped == "E master sword":
                     print "You defend with your shield"
@@ -270,15 +271,99 @@ class PuzzleTwo(Room):
         self.equipped = stats.readline().strip("\n")
         stats.close()
     def enter(self):
-        pass
+        print "You see a large clock in the center of the room."
+        print "It turns into a face and grins at you."
+        print "You will never see Zelda again!"
+        print "The face turns into pictures."
+        print "You see yourself running after Zelda's kidnapper."
+        print "You start to remember what happened."
+        print "You were in the middle of a great battle."
+        print "And then the screen goes dark."
+        print "A final face appears.  It is grinning at you."
+        print "How do you plan to defeat me?"
+        print "I am all that is, I am time itself."
+        
+        
+        prompt = raw_input("The hero of time indeed...\n>")
+        if "use" in prompt and "sword" in prompt:
+            print "The clock disappears and a door appears, you run through it."
+            return 'FinalBattle'
+
 class FinalBattle(Room):
     def __init__(self):
         stats = open("stats.txt","r")
-        self.player_HP = int(stats.readline().strip("\n"))
+        self.player_HP = 35
         self.backpack = stats.readline().strip("\n")
         self.equipped = stats.readline().strip("\n")
         stats.close()
+    
+    def battle(self):
+        bad_ass = False
+        if "E master sword" in self.backpack:
+            print "Would you like to equip your new weapons now?"
+            prompt = raw_input("> ")
+            if "Y" or "y" in prompt:
+                print "weapons and armor equipped!!!"
+                self.equipped = "E master sword"
+                if "moon tunic" in self.backpack:
+                    print "new tunic on...Now immune to elemental attacks!!!"
+                    bad_ass = True
+                    
+        Boss_HP = 50
+        while Boss_HP > 0:
+            print "what do you do:"
+            print "1. attack with sword \n 2. Defend with shield \n 3. stand their and grin"
+            prompt = int(raw_input("> "))
+            
+            if prompt == 1:
+                if self.equipped == "E master sword":
+                    Boss_HP -= randint(8,45)
+                else:
+                    Boss_HP -= randint(3,4)
+                
+                self.player_HP -= randint(1,5)
+            if prompt == 2:
+                if self.equipped == "E master sword":
+                    print "You defend with your shield"
+                    self.player_HP -= randint(3,4)
+                if bad_ass:       
+                    print "Boss gets hurt upon touching you."
+                    Boss_HP -= 30
+                    self.player_HP -= randint(3,7)
+                else:
+                    print "You don't have a shield!!!"
+                    self.player_HP -= randint(5,50)
+
+              
+            if prompt == 3:
+                if bad_ass:
+                    print "Boss gets hurt upon touching you."
+                    Boss_HP -= 30
+                    self.player_HP -= randint(7,15)
+                else:
+                    print "You fool..."
+                    self.player_HP -= randint(5,30)
+            
+            print "Your current HP: %d" % self.player_HP
+            print "Boss's HP: %d" % Boss_HP
+            
+        
+            if self.player_HP <=0:
+                print "You lost...The theif gets away with Zelda."
+                sys.exit(0)
+
+        
+
+
+
     def enter(self):
-        pass
+        print "You wake up on the floor of a room.  The theif that stole Zelda is cackling about how easily he defeated you."
+        print "You wait for his guard to drop, pick up your sword and sink it into his back."
+        print "He shreks with pain, 'You'll pay for that!!!'"
+
+        self.battle()
+        print "You won!"
+        
+    
 
 
