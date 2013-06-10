@@ -1,0 +1,2 @@
+10
+['[', ']', 'metal boots', 'bow and arrows', 'moon tunic', 'E master sword', 'sheild']
